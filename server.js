@@ -16,7 +16,10 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('❌ MongoDB Connection Error:', err));
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin : process.env.FRONTEND_URL,
+    credentials : true
+}));
 app.use(cookieParser());
 app.use(express.json());
 
