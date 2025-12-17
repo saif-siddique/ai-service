@@ -17,9 +17,12 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Middleware
 app.use(cors({
-    origin : process.env.FRONTEND_URL,
-    credentials : true
+  origin: "https://gravityhostel.vercel.app",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+app.options("*", cors()); // allow all OPTIONS requests
 app.use(cookieParser());
 app.use(express.json());
 
