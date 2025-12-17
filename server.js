@@ -22,8 +22,6 @@ app.use(cors({
   credentials: true
 }));
 
-// 3. OTHER MIDDLEWARE
-app.options("*", cors()); 
 app.use(express.json());
 app.use(cookieParser());
 
