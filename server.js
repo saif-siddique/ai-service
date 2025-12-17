@@ -10,7 +10,9 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // 1. DATABASE CONNECTION
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 5000,
+})
   .then(() => console.log('📦 Connected to MongoDB'))
   .catch(err => console.error('❌ MongoDB Connection Error:', err));
 
@@ -19,11 +21,11 @@ app.use(cors({
   origin: "https://gravityhostel.vercel.app", // Ensure no trailing slash
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
 }));
 
 app.use(express.json());
 app.use(cookieParser());
+app.options('*', cors());
 
 // 4. ROUTES (Updated to match your frontend /api prefix)
 const studentRoutes = require('./routes/studentRoutes');
@@ -37,6 +39,6 @@ app.use('/api/visitor', visitorRoutes);
 app.get('/', (req, res) => res.send('AI Service is Live'));
 
 // 5. START SERVER
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log(`🚀 AI Server listening on 0.0.0.0:${PORT}`);
 });
