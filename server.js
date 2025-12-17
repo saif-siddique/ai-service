@@ -21,6 +21,7 @@ app.use(cors({
   origin: "https://gravityhostel.vercel.app", // Ensure no trailing slash
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
+  credentials : true
 }));
 
 app.use(express.json());
