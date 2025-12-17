@@ -33,7 +33,7 @@ const visitorRoutes = require('./routes/visitorRoutes');
 
 // Mount with /api prefix to match your frontend calls
 app.use('/api/student', studentRoutes);
-app.use('/api/visitor', visitorRoutes);
+app.use('/visitor', visitorRoutes);
 
 // Health Check
 app.get('/', (req, res) => res.send('AI Service is Live'));
